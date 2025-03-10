@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBIT Canteen - Main</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .menu-item {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+        }
+        .menu-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        select, button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to CBIT Canteen</h1>
+    <div class="menu-container">
+        <div class="menu-item">
+            <a href="breakfast_menu.html">
+                <img src="breakfast.jpg" alt="Breakfast">
+                <h3>Breakfast</h3>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="lunch_menu.html">
+                <img src="lunch.jpg" alt="Lunch">
+                <h3>Lunch</h3>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="payments.html">
+                <img src="payment.jpg" alt="Payment">
+                <h3>Payment</h3>
+            </a>
+        </div>
+    </div>
+
+    <label for="timeSlot">Select Time Slot:</label>
+    <select id="timeSlot">
+        <option value="8-9am">8:00 AM - 9:00 AM</option>
+        <option value="9-10am">9:00 AM - 10:00 AM</option>
+        <option value="12-1pm">12:00 PM - 1:00 PM</option>
+        <option value="1-2pm">1:00 PM - 2:00 PM</option>
+    </select>
+    <button onclick="selectTimeSlot()">Select Time Slot</button>
+
+    <script>
+        function selectTimeSlot() {
+            let timeSlot = document.getElementById('timeSlot').value;
+            localStorage.setItem("timeSlot", timeSlot);
+            alert('Time Slot Selected: ' + timeSlot);
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - CBIT Canteen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Payment Page</h1>
+    <form id="paymentForm">
+        <label for="paymentMethod">Select Payment Method:</label>
+        <select id="paymentMethod">
+            <option value="Card">Credit/Debit Card</option>
+            <option value="Cash">Cash on Delivery</option>
+        </select>
+        <br>
+        <label for="cardDetails">Card Number (if Card Payment):</label>
+        <input type="text" id="cardDetails" placeholder="Enter Card Number" required>
+        <br>
+        <button type="submit" onclick="submitPayment(event)">Submit Payment</button>
+    </form>
+
+    <script>
+        function submitPayment(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+            let paymentMethod = document.getElementById('paymentMethod').value;
+            let cardDetails = document.getElementById('cardDetails').value;
+            
+            if (paymentMethod === 'Card' && cardDetails === "") {
+                alert("Please enter valid card details.");
+                return;
+            }
+
+            alert("Payment Successful! You chose " + paymentMethod);
+            window.location.href = "main.html"; // Redirect to main page after payment
+        }
+    </script>
+</body>
+</html>
