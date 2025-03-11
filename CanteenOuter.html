@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Meal Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .navbar {
+            background-color: #004080;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        
+        .navbar a:hover {
+            background-color: #002850;
+        }
+        
+        .logo {
+            width: 50px;
+            height: auto;
+        }
+        
+        .container {
+            margin-top: 20px;
+        }
+        
+        .meal-section {
+            margin-top: 20px;
+        }
+        
+        .meal-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .meal-item {
+            text-align: center;
+        }
+        
+        .meal-item img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+        
+        .meal-item button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #004080;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .meal-item button:hover {
+            background-color: #002850;
+        }
+        
+        .view-more {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #008000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .view-more:hover {
+            background-color: #006400;
+        }
+    </style>
+    <script>
+        function addToCart(itemName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(itemName);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert("Added to cart");
+        }
+    </script>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="CBIT.png" alt="College Logo" class="logo">
+        <div>
+            <a href="login.html">Login</a>
+            <a href="menu.html">Menu</a>
+            <a href="payments.html">Payments</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Welcome to CBIT GrabGrub</h1>
+        <h3>Select Your meals on the Go without having to wait in line for hours</h3>
+        <p>Select your meal for Breakfast, Lunch, or Dinner</p>
+    </div>
+
+    <div class="meal-section">
+        <h2>Breakfast Options</h2>
+        <div class="meal-container">
+            <div class="meal-item">
+                <img src="breakfast1.jpg" alt="Pancakes">
+                <button onclick="addToCart('Pancakes')">Add to Cart</button>
+            </div>
+            <div class="meal-item">
+                <img src="breakfast2.jpg" alt="Omelette">
+                <button onclick="addToCart('Omelette')">Add to Cart</button>
+            </div>
+            <div class="meal-item">
+                <img src="breakfast3.jpg" alt="Fruit Bowl">
+                <button onclick="addToCart('Fruit Bowl')">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="meal-section">
+        <h2>Lunch Options</h2>
+        <div class="meal-container">
+            <div class="meal-item">
+                <img src="lunch1.jpg" alt="Sandwich">
+                <button onclick="addToCart('Sandwich')">Add to Cart</button>
+            </div>
+            <div class="meal-item">
+                <img src="lunch2.jpg" alt="Salad">
+                <button onclick="addToCart('Salad')">Add to Cart</button>
+            </div>
+            <div class="meal-item">
+                <img src="lunch3.jpg" alt="Pasta">
+                <button onclick="addToCart('Pasta')">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="meal-section">
+        <h2>Dinner Options</h2>
+        <div class="meal-container">
+            <div class="meal-item">
+                <img src="dinner1.jpg" alt="Steak">
+                <button onclick="addToCart('Steak')">Add to Cart</button>
+            </div>
+            <div class="meal-item">
+                <img src="dinner2.jpg" alt="Grilled Fish">
+                <button onclick="addToCart('Grilled Fish')">Add to Cart</button>
+            </div>
+            <div class="meal-item">
+                <img src="dinner3.jpg" alt="Vegetable Stir-Fry">
+                <button onclick="addToCart('Vegetable Stir-Fry')">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <button class="view-more" onclick="window.location.href='menu.html'">View More Options</button>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .navbar {
+            background-color: #004080;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        
+        .navbar a:hover {
+            background-color: #002850;
+        }
+        
+        .meal-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .meal-item {
+            text-align: center;
+        }
+        
+        .meal-item img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+        
+        .meal-item button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #004080;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .meal-item button:hover {
+            background-color: #002850;
+        }
+        
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #800000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .back-button:hover {
+            background-color: #600000;
+        }
+    </style>
+    <script>
+        function addToCart(itemName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(itemName);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert("Added to cart");
+        }
+    </script>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="CanteenOuter.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="payments.html">Payments</a>
+    </div>
+
+    <h1>Additional Meal Options</h1>
+
+    <div class="meal-container">
+        <div class="meal-item">
+            <button onclick="addToCart('Waffles')">Add to Cart</button>
+            <img src="waffles.jpg" alt="Waffles">
+        </div>
+        <div class="meal-item">
+            <button onclick="addToCart('Burger')">Add to Cart</button>
+            <img src="burger.jpg" alt="Burger">
+        </div>
+        <div class="meal-item">
+            <button onclick="addToCart('Sushi')">Add to Cart</button>
+            <img src="sushi.jpg" alt="Sushi">
+        </div>
+        <div class="meal-item">
+            <button onclick="addToCart('Pizza')">Add to Cart</button>
+            <img src="pizza.jpg" alt="Pizza">
+        </div>
+        <div class="meal-item">
+            <button onclick="addToCart('Smoothie')">Add to Cart</button>
+            <img src="smoothie.jpg" alt="Smoothie">
+        </div>
+    </div>
+
+    <button class="back-button" onclick="window.location.href='CanteenOuter.html'">Back</button>
+</body>
+
+</html>

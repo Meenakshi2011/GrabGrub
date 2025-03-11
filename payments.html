@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .container {
+            margin-top: 20px;
+        }
+        
+        table {
+            width: 50%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+        
+        th,
+        td {
+            padding: 10px;
+        }
+        
+        .payment-options {
+            margin-top: 20px;
+        }
+        
+        .payment-button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #008000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .payment-button:hover {
+            background-color: #006400;
+        }
+        
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #800000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .back-button:hover {
+            background-color: #600000;
+        }
+    </style>
+    <script>
+        function getCart() {
+            return JSON.parse(localStorage.getItem('cart')) || [];
+        }
+
+        function displayCart() {
+            let cart = getCart();
+            let table = document.getElementById("cart-table");
+            let tbody = table.getElementsByTagName("tbody")[0];
+            tbody.innerHTML = "";
+            let total = 0;
+
+            if (cart.length === 0) {
+                tbody.innerHTML = "<tr><td colspan='2'>No items in cart</td></tr>";
+            } else {
+                cart.forEach(item => {
+                    let row = tbody.insertRow();
+                    row.insertCell(0).innerText = item;
+                    row.insertCell(1).innerText = "$100";
+                    total += 100;
+                });
+                document.getElementById("total-price").innerText = "$" + total.toFixed(2);
+            }
+        }
+
+        function completePayment(method) {
+            let cart = getCart();
+            if (cart.length === 0) {
+                alert("No items to pay for");
+                return;
+            }
+            let token = Math.floor(1000 + Math.random() * 9000);
+            alert("Payment complete. Your token number is " + token);
+            localStorage.removeItem('cart');
+            location.reload();
+        }
+
+        window.onload = displayCart;
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Payment Page</h1>
+        <table id="cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <h2>Total: <span id="total-price">$0.00</span></h2>
+        <div class="payment-options">
+            <button class="payment-button" onclick="completePayment('Cash')">Pay with Cash</button>
+            <button class="payment-button" onclick="completePayment('UPI')">Pay with UPI</button>
+        </div>
+        <button class="back-button" onclick="window.location.href='CanteenOuter.html'">Back</button>
+    </div>
+</body>
+
+</html>
